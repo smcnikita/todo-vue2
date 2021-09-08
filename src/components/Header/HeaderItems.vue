@@ -1,11 +1,11 @@
 <template>
   <div class="main__header">
     <div class="main__header-list">
-      <list-icon/>
+      <list-icon id="list-icon"/>
     </div>
     <h2>To do</h2>
     <div class="main__header-add">
-      <plus-icon/>
+      <plus-icon id="plus-icon"/>
     </div>
   </div>
 </template>
@@ -24,5 +24,8 @@ export default {
 </script>
 
 <style scoped>
-
+#list-icon,
+#plus-icon {
+  display: none;
+}
 </style>
