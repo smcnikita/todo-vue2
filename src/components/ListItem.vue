@@ -1,23 +1,20 @@
 <template>
-  <div class="main__list">
-    <div class="main__list-item">
-      <div class="main__list-item-check">
-        <check-icon/>
-      </div>
-      <p>выполнить что-то</p>
-      <div class="main__list-item-remove">
-        <remove-icon/>
-      </div>
+  <div
+      class="main__list-item"
+      :class="{'main__list-item--completed': checked}">
+    <div class="main__list-item-check" @click="toggleCompleted(indexTask)">
+      <check-icon/>
     </div>
-
-    <div class="main__list-item main__list-item--completed">
-      <div class="main__list-item-check">
-        <check-icon/>
-      </div>
-      <p>выполнено</p>
-      <div class="main__list-item-remove">
-        <remove-icon/>
-      </div>
+    <p>
+      <template v-if="checked">
+        <s>{{ text }}</s>
+      </template>
+      <template v-else>
+        {{ text }}
+      </template>
+    </p>
+    <div class="main__list-item-remove" @click="removeTasks(indexTask)">
+      <remove-icon/>
     </div>
   </div>
 </template>
@@ -31,6 +28,19 @@ export default {
   components: {
     RemoveIcon,
     CheckIcon
+  },
+  props: {
+    'text': String,
+    'checked': Boolean,
+    'indexTask': Number
+  },
+  methods: {
+    toggleCompleted(indexTask) {
+      this.$emit('onToggleCompleted', indexTask)
+    },
+    removeTasks(indexTask) {
+      this.$emit('removeTasks', indexTask)
+    }
   }
 }
 </script>

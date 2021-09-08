@@ -3,7 +3,7 @@
     <div class="main__header-list">
       <list-icon id="list-icon"/>
     </div>
-    <h2>To do</h2>
+    <h2>{{ listTitle }}</h2>
     <div class="main__header-add">
       <plus-icon id="plus-icon"/>
     </div>
@@ -19,6 +19,11 @@ export default {
   components: {
     PlusIcon,
     ListIcon
+  },
+  data() {
+    return {
+      listTitle: "To do"
+    }
   }
 }
 </script>
