@@ -45,15 +45,18 @@ export default {
   methods: {
     onToggleCompleted(indexTask) {
       this.listTasks[indexTask].checked = !this.listTasks[indexTask].checked;
+			localStorage.tasks = JSON.stringify(this.listTasks);
     },
     removeTasks(indexTask) {
       this.listTasks.splice(indexTask, 1);
+			localStorage.tasks = JSON.stringify(this.listTasks);
     },
     onAddTask(text) {
       this.listTasks.push({
         text: text,
         checked: false
       });
+			localStorage.tasks = JSON.stringify(this.listTasks);
     }
   },
 	beforeCreate() {
@@ -66,6 +69,17 @@ export default {
 			this.theme = 'dark';
 		} else {
 			this.theme = 'light';
+		}
+	},
+	created() {
+		if (localStorage.tasks !== undefined) {
+			let storedTasks = JSON.parse(localStorage.tasks);
+			storedTasks.forEach((e) => {
+				this.listTasks.push({
+					text: e.text,
+					checked: e.checked
+				})
+			})
 		}
 	}
 }
