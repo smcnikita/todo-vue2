@@ -33,5 +33,8 @@ export default {
 </script>
 
 <style scoped>
-
+input {
+	caret-color: var(--black);
+	color: var(--black);
+}
 </style>

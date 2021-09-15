@@ -38,7 +38,8 @@ export default {
   },
   data() {
     return {
-      listTasks: []
+      listTasks: [],
+			theme: ''
     }
   },
   methods: {
@@ -54,7 +55,19 @@ export default {
         checked: false
       });
     }
-  }
+  },
+	beforeCreate() {
+		let themeLocalStorage = localStorage.getItem('theme');
+		if(themeLocalStorage === null) {
+			localStorage.theme = 'light';
+			this.theme = 'light';
+		} else if (themeLocalStorage === 'dark') {
+			document.documentElement.setAttribute('data-theme', 'dark');
+			this.theme = 'dark';
+		} else {
+			this.theme = 'light';
+		}
+	}
 }
 </script>
 
